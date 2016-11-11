@@ -1,0 +1,26 @@
+* Esto es el primer nivel
+** Esto es un subnivel del primer nivel
+*** Esto es otro subnivel del primer nivel
+*** TODO esto es mi primer todo
+*** TODO esto es mi segundo todo
+
+ Esto es algo que debo hacer para lograr algo en la vida. Como estar en lo mas alto de una altura razonable y empezar a disparar cosas con las manos en los ojos de un pájaro que pasa por el lugar pero que en realidad no esta preparado para todo esto. Si, esto es muy importante para empezar a reconciliar el estar sentado escribiendo este documento que parece hecho de párrafos muy largos que no tienen ningún sentido leerlos o escribirlos en la noche cuando no se puede hacer nada en internet.
+* Esto es el segundo nivel[fn:1]
+* Esto es el tercer nivel          nivel :: pero esto no ocurre
+
+** Lord of the Rings
+   My favorite scenes are (in this order)
+   1. The attack of the Rohirrin
+   2. Eowyn's fight with the witch king
+      + this was already my favorite scene in the book
+      + I really like Miranda Otto.
+   Important actors in this film are:
+   - Elijah Wood :: He plays Frodo
+   - Sean Asting :: He plays Sam, Frodo's friend.
+   - [X] what is this?
+
+* Footnotes
+
+[fn:1] This is a foot note. I don't know if you noted, but this is shit
+
+
