@@ -28,6 +28,21 @@ class Stats<T extends Number> {
         }
         return sum / nums.length;
     }
+    
+    /*
+    Determine if two averages are the same.
+    Notice the use of the wildcard.
+    */
+    boolean sameAvg(Stats<?> ob) {
+        return this.average() == ob.average();       
+    }
+    /*
+    It is important to understant that the wildcard
+    does not affect what type of Stats objects can be
+    created. This is governed by the extends clause 
+    in the Stats declaration. The wildcard simply 
+    matches any valid Stats object.
+    */
 }
 
 // Demostrates Stats
