@@ -1,3 +1,43 @@
+<<<<<<< HEAD
 /learning_java/swing demo/nbproject/private/
 *.class
 
+=======
+
+# Created by https://www.gitignore.io/api/netbeans,java
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+
+### Java ###
+*.class
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# End of https://www.gitignore.io/api/netbeans,java
+/JavaFXApplication3/nbproject/private/
+/JavaFXApplication4/nbproject/private/
+/JavaFxTest/nbproject/private/
+/sceneBuilderTest/target/
+/AdressApp/nbproject/private/
+/project/documentation/target/
+/HibernateHelloWorld/target/
+>>>>>>> my_hibernate_test_collection/master
