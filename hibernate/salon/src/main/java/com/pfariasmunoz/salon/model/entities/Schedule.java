@@ -25,13 +25,13 @@ import javax.persistence.Table;
 public class Schedule implements Serializable {
     
     @Id @GeneratedValue
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Long mId;
     
-    @Column(name = "_from")
+    @Column(name = "_from", nullable = false)
     private LocalDateTime mFrom;
     
-    @Column(name = "_to")
+    @Column(name = "_to", nullable = false)
     private LocalDateTime mTo;
     
     @ManyToOne(fetch = FetchType.LAZY)

@@ -12,6 +12,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
 
 
 /**
@@ -26,7 +28,7 @@ public class NewEmptyJUnitTest extends TestCase {
     public NewEmptyJUnitTest() {
     }
 
- 
+    @Before
     @Override
     public void setUp() {
         // like discussed with regards to SessionFactory, an EntityManagerFactory is set up once for an application
@@ -36,14 +38,17 @@ public class NewEmptyJUnitTest extends TestCase {
 
     }
 
-  
+    @After
     @Override
     public void tearDown() {
         entityManagerFactory.close();
     }
 
     public void testBasicUsage() {
-        // create a couple of events...
+        addClients();
+    }
+    
+    private void addEmployees() {
         entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         LocalDateTime from1 = LocalDateTime.of(2000, Month.MARCH, 15, 11, 0);
@@ -75,6 +80,30 @@ public class NewEmptyJUnitTest extends TestCase {
                     + " to: " + schedule2.getmTo());
         });
         entityManager.getTransaction().commit();
+        entityManager.close();        
+    }
+    
+    private void addClients() {
+        entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        
+        Client client1 = new Client();
+        client1.setmClientName("Seroa Rosita");
+        
+        Client client2 = new Client("La Loca");
+        client2.setmContactMail("laloca@gmail.com");
+        
+        Client client3 = new Client("Pablo", "94062006", "pfariasmunoz@gmail.com");
+        entityManager.persist(client1);
+        entityManager.persist(client2);
+        entityManager.persist(client3);
+        
+        entityManager.getTransaction().commit();
         entityManager.close();
+        
+    }
+    
+    private void addSchedules() {
+        
     }
 }
