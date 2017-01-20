@@ -5,6 +5,7 @@
  */
 package com.pfariasmunoz.salon.model.entities;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -46,7 +47,7 @@ public class NewEmptyJUnitTest extends TestCase {
     }
 
     public void testBasicUsage() {
-        addAppointments();
+        addServiceBooked();
     }
     
     private void addEmployees() {
@@ -118,26 +119,43 @@ public class NewEmptyJUnitTest extends TestCase {
         LocalDate localDate2 = LocalDate.of(2000, Month.MARCH, 2);
         LocalDate localDate3 = LocalDate.of(2000, Month.MARCH, 3);
         
-        Appointment appointment1 = new Appointment();
-        appointment1.setmDateCreated(localDate1);
-        Appointment appointment2 = new Appointment();
-        appointment2.setmDateCreated(localDate2);
-        Appointment appointment3 = new Appointment();
-        appointment3.setmDateCreated(localDate3);
+        
+        Appointment appointment4 = new Appointment(localDate3, employee3, "Roberto", "roberto@gmail.com", LocalDateTime.now(), LocalDateTime.of(2017, Month.MARCH, 4, 10, 34), new BigDecimal(20000), false);
+        Appointment appointment5 = new Appointment();
         
         entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         
-        employee1.addAppointment(appointment1);
-        employee2.addAppointment(appointment2);
-        employee3.addAppointment(appointment3);
-        
-        entityManager.persist(employee1);
-        entityManager.persist(employee2);
-        entityManager.persist(employee3);
-        
-        
+
+        entityManager.persist(appointment4);
+        entityManager.persist(appointment5);
+         
         entityManager.getTransaction().commit();
         entityManager.close();        
+    }
+    
+    private void addService() {
+        entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        
+        Service service1 = new Service("Corte", 60, BigDecimal.TEN);
+        entityManager.persist(service1);
+        
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
+    
+    private void addServiceBooked() {
+        
+        entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        
+        Service service1 = new Service("Corte", 60, BigDecimal.TEN);
+        ServiceBooked sb = new ServiceBooked(service1.getmPrice(), service1);
+        entityManager.persist(service1);
+        
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        
     }
 }

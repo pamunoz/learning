@@ -19,40 +19,61 @@ import javax.persistence.Table;
  *
  * @author pablo
  */
-
 @Entity
 @Table(name = "employees")
 public class Employee {
-    
-    @Id @GeneratedValue
+
+    @Id
+    @GeneratedValue
     @Column(name = "id", nullable = false)
     private Long mId;
-    
+
     @Column(name = "first_name", nullable = false)
     private String mFirstName;
-    
+
     @Column(name = "last_name", nullable = false)
     private String mLastName;
-    
+
     @OneToMany(mappedBy = "mEmployee", cascade = {CascadeType.ALL})
     private List<Schedule> mScheduleList = new ArrayList<>();
-    
+
     @OneToMany(mappedBy = "mEmployeeCreated", cascade = {CascadeType.ALL})
-    private List<Appointment> mAppointmentList = new ArrayList<>();
+    private List<Appointment> mAppointmentsCreatedList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "mAssingEmployee", cascade = {CascadeType.ALL})
+    private List<Appointment> mAppointmentsAssignList = new ArrayList<>();
 
     public Employee() {
+        this.mFirstName = "";
+        this.mLastName = "";
     }
 
     public Employee(String mFirstName, String mLastName) {
         this.mFirstName = mFirstName;
         this.mLastName = mLastName;
-    }   
-    
+    }
+
+    public List<Appointment> getmAppointmentsCreatedList() {
+        return mAppointmentsCreatedList;
+    }
+
+    public void setmAppointmentsCreatedList(List<Appointment> mAppointmentsCreatedList) {
+        this.mAppointmentsCreatedList = mAppointmentsCreatedList;
+    }
+
+    public List<Appointment> getmAppointmentsAssignList() {
+        return mAppointmentsAssignList;
+    }
+
+    public void setmAppointmentsAssignList(List<Appointment> mAppointmentsAssignList) {
+        this.mAppointmentsAssignList = mAppointmentsAssignList;
+    }
+
     public void addAppointment(Appointment appointment) {
-        mAppointmentList.add(appointment);
+        mAppointmentsCreatedList.add(appointment);
         appointment.setmEmployeeCreated(this);
     }
-    
+
     public void addSchedule(Schedule schedule) {
         mScheduleList.add(schedule);
         schedule.setmEmployee(this);
@@ -89,13 +110,4 @@ public class Employee {
     public void setmId(Long mId) {
         this.mId = mId;
     }
-
-    public List<Appointment> getmAppointmentList() {
-        return mAppointmentList;
-    }
-
-    public void setmAppointmentList(List<Appointment> mAppointmentList) {
-        this.mAppointmentList = mAppointmentList;
-    }
-    
 }

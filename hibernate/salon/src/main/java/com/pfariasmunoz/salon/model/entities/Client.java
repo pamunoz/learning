@@ -5,10 +5,13 @@
  */
 package com.pfariasmunoz.salon.model.entities;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,9 +31,20 @@ public class Client {
     
     @Column(name = "contact_phone", nullable = true)
     private String mContactPhone;
+
+    public List<Appointment> getmAppointmentsList() {
+        return mAppointmentsList;
+    }
+
+    public void setmAppointmentsList(List<Appointment> mAppointmentsList) {
+        this.mAppointmentsList = mAppointmentsList;
+    }
     
     @Column(name = "contact_mail", nullable = true)
     private String mContactMail;
+    
+    @OneToMany(mappedBy = "mClient",cascade = {CascadeType.ALL})
+    private List<Appointment> mAppointmentsList;
 
     public Client() {
     }

@@ -39,6 +39,9 @@ public class Schedule implements Serializable {
     private Employee mEmployee;
 
     public Schedule() {
+        this.mFrom = LocalDateTime.now();
+        this.mTo = LocalDateTime.now();
+        this.mEmployee = new Employee();
     }
 
     public Schedule(LocalDateTime mFrom, LocalDateTime mTo) {
