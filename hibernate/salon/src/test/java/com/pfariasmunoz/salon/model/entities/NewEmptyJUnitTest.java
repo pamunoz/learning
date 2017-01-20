@@ -5,6 +5,7 @@
  */
 package com.pfariasmunoz.salon.model.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
@@ -30,7 +31,7 @@ public class NewEmptyJUnitTest extends TestCase {
 
     @Before
     @Override
-    public void setUp() {
+    protected void setUp() {
         // like discussed with regards to SessionFactory, an EntityManagerFactory is set up once for an application
         // 		IMPORTANT: notice how the name here matches the name we gave the persistence-unit in persistence.xml!
         entityManagerFactory = Persistence.createEntityManagerFactory("salon_mysql");
@@ -40,12 +41,12 @@ public class NewEmptyJUnitTest extends TestCase {
 
     @After
     @Override
-    public void tearDown() {
+    protected void tearDown() {
         entityManagerFactory.close();
     }
 
     public void testBasicUsage() {
-        addClients();
+        addAppointments();
     }
     
     private void addEmployees() {
@@ -105,5 +106,38 @@ public class NewEmptyJUnitTest extends TestCase {
     
     private void addSchedules() {
         
+    }
+    
+    private void addAppointments() {
+        
+        Employee employee1 = new Employee("Pablo", "Farias");
+        Employee employee2 = new Employee("Carolina", "Farias");
+        Employee employee3 = new Employee("Cristopher", "Rojas");
+        
+        LocalDate localDate1 = LocalDate.of(2000, Month.MARCH, 1);
+        LocalDate localDate2 = LocalDate.of(2000, Month.MARCH, 2);
+        LocalDate localDate3 = LocalDate.of(2000, Month.MARCH, 3);
+        
+        Appointment appointment1 = new Appointment();
+        appointment1.setmDateCreated(localDate1);
+        Appointment appointment2 = new Appointment();
+        appointment2.setmDateCreated(localDate2);
+        Appointment appointment3 = new Appointment();
+        appointment3.setmDateCreated(localDate3);
+        
+        entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        
+        employee1.addAppointment(appointment1);
+        employee2.addAppointment(appointment2);
+        employee3.addAppointment(appointment3);
+        
+        entityManager.persist(employee1);
+        entityManager.persist(employee2);
+        entityManager.persist(employee3);
+        
+        
+        entityManager.getTransaction().commit();
+        entityManager.close();        
     }
 }

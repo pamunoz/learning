@@ -35,7 +35,10 @@ public class Employee {
     private String mLastName;
     
     @OneToMany(mappedBy = "mEmployee", cascade = {CascadeType.ALL})
-    private List<Schedule> mScheduleList = new ArrayList<Schedule>();
+    private List<Schedule> mScheduleList = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "mEmployeeCreated", cascade = {CascadeType.ALL})
+    private List<Appointment> mAppointmentList = new ArrayList<>();
 
     public Employee() {
     }
@@ -43,7 +46,17 @@ public class Employee {
     public Employee(String mFirstName, String mLastName) {
         this.mFirstName = mFirstName;
         this.mLastName = mLastName;
-    }    
+    }   
+    
+    public void addAppointment(Appointment appointment) {
+        mAppointmentList.add(appointment);
+        appointment.setmEmployeeCreated(this);
+    }
+    
+    public void addSchedule(Schedule schedule) {
+        mScheduleList.add(schedule);
+        schedule.setmEmployee(this);
+    }
 
     public String getmFirstName() {
         return mFirstName;
@@ -68,10 +81,21 @@ public class Employee {
     public void setmScheduleList(List<Schedule> mScheduleList) {
         this.mScheduleList = mScheduleList;
     }
-    
-    public void addSchedule(Schedule schedule) {
-        mScheduleList.add(schedule);
-        schedule.setmEmployee(this);
+
+    public Long getmId() {
+        return mId;
+    }
+
+    public void setmId(Long mId) {
+        this.mId = mId;
+    }
+
+    public List<Appointment> getmAppointmentList() {
+        return mAppointmentList;
+    }
+
+    public void setmAppointmentList(List<Appointment> mAppointmentList) {
+        this.mAppointmentList = mAppointmentList;
     }
     
 }
