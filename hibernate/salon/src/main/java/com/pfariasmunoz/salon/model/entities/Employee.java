@@ -5,18 +5,26 @@
  */
 package com.pfariasmunoz.salon.model.entities;
 
+import javafx.beans.property.ObjectProperty;
+
+
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.StringProperty;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,26 +37,40 @@ import javax.persistence.Table;
 @Entity
 @Access(AccessType.PROPERTY)
 @Table(name = "employees")
-@NamedQuery(name="Employee.findAll", query="SELECT i from Employee i")
+@NamedQuery(name="Employee.findAll", query="SELECT e from Employee e")
 public class Employee implements Externalizable{
-
     
-    private Long mId;
-
+    private static final Long DEFAULT_ID = -1L;
+    private static final String DEFAULT_FIRST_NAME = "";
     
-    private String mFirstName;
-
     
-    private String mLastName;
-
-   
-    private List<Schedule> mScheduleList = new ArrayList<>();
-
+    // ID property
+    private ObjectProperty<Long> mId; 
+    @Id 
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    public Long getmId() {
+        return (mId != null) ? mId.get() : DEFAULT_ID;
+    }
     
-    private List<Appointment> mAppointmentsCreatedList = new ArrayList<>();
-
+    public void setmId(Long id) {
+        if ((mId != null) || (!Objects.equals(id, DEFAULT_ID))) {
+            idProperty().setValue(id);
+        }
+    }
     
-    private List<Appointment> mAppointmentsAssignList = new ArrayList<>();
+    public ObjectProperty<Long> idProperty() {
+        if (mId == null) {
+            mId = new SimpleObjectProperty<>(this, "mId", DEFAULT_ID);
+        }
+        return mId;
+    }
+    
+    private StringProperty mFirstName;
+    private StringProperty mLastName;
+    private ListProperty<Schedule> mScheduleList = new ArrayList<>();
+    private ListProperty<Appointment> mAppointmentsCreatedList = new ArrayList<>();
+    private ListProperty<Appointment> mAppointmentsAssignList = new ArrayList<>();
 
     public Employee() {
         this.mFirstName = "";
@@ -60,11 +82,7 @@ public class Employee implements Externalizable{
         this.mLastName = mLastName;
     }
     
-    @Id @GeneratedValue
-    @Column(name = "id")
-    public Long getmId() {
-        return mId;
-    }
+    
 
     @Column(name = "first_name", nullable = false)
     public String getmFirstName() {
@@ -77,7 +95,7 @@ public class Employee implements Externalizable{
     }
     
     @OneToMany(mappedBy = "mEmployee", cascade = {CascadeType.ALL})
-    public List<Schedule> getmScheduleList() {
+    public ListProperty<Schedule> getmScheduleList() {
         return mScheduleList;
     }
     
@@ -138,9 +156,7 @@ public class Employee implements Externalizable{
 
     
 
-    public void setmId(Long mId) {
-        this.mId = mId;
-    }
+    
 
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
