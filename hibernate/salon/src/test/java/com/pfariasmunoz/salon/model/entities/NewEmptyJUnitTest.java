@@ -47,7 +47,7 @@ public class NewEmptyJUnitTest extends TestCase {
     }
 
     public void testBasicUsage() {
-        addServicesBooked();
+        addAppointments();
     }
     
     private void addEmployees() {
@@ -189,4 +189,5 @@ public class NewEmptyJUnitTest extends TestCase {
         entityManager.getTransaction().commit();
         entityManager.close();        
     }
+    
 }

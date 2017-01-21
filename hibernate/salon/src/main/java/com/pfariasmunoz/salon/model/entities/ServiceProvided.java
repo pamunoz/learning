@@ -6,6 +6,7 @@
 package com.pfariasmunoz.salon.model.entities;
 
 import java.math.BigDecimal;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,6 +36,8 @@ public class ServiceProvided {
     @JoinColumn(name = "service_id",
             foreignKey = @ForeignKey(name = "SERVICE_ID_FK"))
     private Service mService;
+    
+    private Appointment mAppointment;
 
     public ServiceProvided() {
         
@@ -67,6 +70,16 @@ public class ServiceProvided {
 
     public void setmService(Service mService) {
         this.mService = mService;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "appointment_id")
+    public Appointment getmAppointment() {
+        return mAppointment;
+    }
+
+    public void setmAppointment(Appointment mAppointment) {
+        this.mAppointment = mAppointment;
     }
     
     

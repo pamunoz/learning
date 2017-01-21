@@ -9,7 +9,8 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -32,27 +34,46 @@ public class Appointment implements Serializable {
     @Id @GeneratedValue
     @Column(name = "id", nullable = false)
     private Long mId = -1L;
-    
+     
+    /**
+     * the date and time when a record was inserted in the table.
+     */
     @Column(name = "date_created", nullable = false)
     private LocalDate mDateCreated;
-    
+     
+    /**
+     * the employee who inserted the record.
+     */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "employee_created", nullable = false)
     private Employee mEmployeeCreated;
     
+    /**
+     * This is a reference to the {@link Client} table. Is arbitrary. 
+     * We may not know who the client is, e.g. somebody who called 
+     * without giving us his name or who walked in and asked for an appointment.
+     */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "client_id")
     private Client mClient;
     
+    /**
+     * This is a reference to the {@link Employee} table. Is arbitrary. 
+     * The employee_id attribute refers to the specific employee 
+     * requested by the client. Remember, a client may not ask 
+     * for any stylist in particular; also, the appointment can 
+     * be set so far in advance that the schedule is not yet finalized. 
+     * 
+     */
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "employee_id")
     private Employee mAssingEmployee;
     
     @Column(name = "client_name")
-    private String mClientName;
+    private String mClientName = "unknown";
     
     @Column(name = "client_contact")
-    private String mClientContact;
+    private String mClientContact = "unavailable";
     
     @Column(name = "start_time")
     private LocalDateTime mStartTime;
@@ -82,15 +103,14 @@ public class Appointment implements Serializable {
     @Column(name = "cancellation_reason", nullable = true)
     private String mCancellationReason; 
     
+    @OneToMany(mappedBy = "mAppointment", cascade = {CascadeType.ALL})
+    private List<ServiceBooked> mServicesBookedList = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "mAppointment", cascade = {CascadeType.ALL})
+    private List<ServiceProvided> mServicesProvidedList = new ArrayList<>();
+    
     public Appointment() {
-        this.mDateCreated = LocalDate.now();
-        this.mEmployeeCreated = new Employee();
-        this.mClientName = "";
-        this.mClientContact = "";
-        this.mStartTime = LocalDateTime.now();
-        this.mEndTimeExpected = LocalDateTime.now();
-        this.mPriceExpected = BigDecimal.ZERO;
-        this.mCanceled = false;
+        
     }
 
     public Appointment(
@@ -106,6 +126,26 @@ public class Appointment implements Serializable {
         this.mEndTimeExpected = mEndTimeExpected;
         this.mPriceExpected = mPriceExpected;
         this.mCanceled = mCanceled;
+    }
+    
+    public void addServicesBooked(ServiceBooked serviceBooked) {
+        mServicesBookedList.add(serviceBooked);
+        serviceBooked.setmAppointment(this);
+    }
+    
+    public void removeServiceBooked(ServiceBooked serviceBooked) {
+        mServicesBookedList.remove(serviceBooked);
+        serviceBooked.setmAppointment(this);
+    }
+    
+    public void addServicesProvided(ServiceProvided serviceProvided) {
+        mServicesProvidedList.add(serviceProvided);
+        serviceProvided.setmAppointment(this);
+    }
+    
+    public void removeServicesProvided(ServiceProvided serviceProvided) {
+        mServicesProvidedList.remove(serviceProvided);
+        serviceProvided.setmAppointment(this);
     }
     
 

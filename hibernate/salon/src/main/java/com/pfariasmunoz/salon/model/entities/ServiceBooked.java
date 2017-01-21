@@ -1,6 +1,7 @@
 package com.pfariasmunoz.salon.model.entities;
 
 import java.math.BigDecimal;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,12 +25,15 @@ public class ServiceBooked {
     private Long mId;
     
     @Column(name = "price", nullable = false)
-    private BigDecimal mPrice = BigDecimal.ZERO;
+    private BigDecimal mPrice;
     
     @ManyToOne
     @JoinColumn(name = "service_id",
             foreignKey = @ForeignKey(name = "SERVICE_ID_FK"))
     private Service mService;
+    
+    
+    private Appointment mAppointment;
     
     public ServiceBooked() {
     }
@@ -58,8 +62,19 @@ public class ServiceBooked {
         return mService;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "appointment_id")
     public void setmService(Service mService) {
         this.mService = mService;
     } 
+
+    public Appointment getmAppointment() {
+        return mAppointment;
+    }
+
+    public void setmAppointment(Appointment mAppointment) {
+        this.mAppointment = mAppointment;
+    }
+    
     
 }
