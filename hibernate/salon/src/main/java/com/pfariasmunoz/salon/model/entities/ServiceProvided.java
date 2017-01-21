@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -30,18 +31,18 @@ public class ServiceProvided {
     @Column(name = "price")
     private BigDecimal mPrice;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "service_id")
+    @ManyToOne
+    @JoinColumn(name = "service_id",
+            foreignKey = @ForeignKey(name = "SERVICE_ID_FK"))
     private Service mService;
 
     public ServiceProvided() {
-        this.mPrice = BigDecimal.ZERO;
-        this.mService = new Service();
+        
     }
 
-    public ServiceProvided(BigDecimal mPrice, Service mService) {
+    public ServiceProvided(BigDecimal mPrice) {
         this.mPrice = mPrice;
-        this.mService = mService;
+ 
     }
 
     public Long getmId() {

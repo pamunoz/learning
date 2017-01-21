@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,25 +19,23 @@ import javax.persistence.Table;
 @Table(name = "service_booked")
 public class ServiceBooked {
     
-    @Id
+    @Id @GeneratedValue
     @Column(name = "id")
     private Long mId;
     
-    @Column(name = "price")
-    private BigDecimal mPrice;
+    @Column(name = "price", nullable = false)
+    private BigDecimal mPrice = BigDecimal.ZERO;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "service_id")
+    @ManyToOne
+    @JoinColumn(name = "service_id",
+            foreignKey = @ForeignKey(name = "SERVICE_ID_FK"))
     private Service mService;
     
     public ServiceBooked() {
-        this.mPrice = BigDecimal.ZERO;
-        this.mService = new Service();
     }
 
-    public ServiceBooked(BigDecimal mPrice, Service mService) {
+    public ServiceBooked(BigDecimal mPrice) {
         this.mPrice = mPrice;
-        this.mService = mService;
     }
 
     public Long getmId() {
@@ -60,8 +60,6 @@ public class ServiceBooked {
 
     public void setmService(Service mService) {
         this.mService = mService;
-    }
-    
-    
+    } 
     
 }

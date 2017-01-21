@@ -32,18 +32,8 @@ public class Service {
     @Column(name = "price")
     private BigDecimal mPrice;
     
-    @OneToMany(mappedBy = "mService", cascade = {CascadeType.ALL})
-    private List<ServiceBooked> mServicesBookedList;
-    
-    @OneToMany(mappedBy = "mService", cascade = {CascadeType.ALL})
-    private List<ServiceProvided> mServicesProvidedList;
-
     public Service() {
-        this.mName = "";
-        this.mDuration = -1;
-        this.mPrice = BigDecimal.ZERO;
-        this.mServicesBookedList = new ArrayList<>();
-        this.mServicesProvidedList = new ArrayList<>();
+        
     }
     
     public Service(String serviceName, int duration, BigDecimal price) {
@@ -51,7 +41,7 @@ public class Service {
         this.mDuration = duration;
         this.mPrice = price;
     }
-
+    
     public Long getmId() {
         return mId;
     }
@@ -83,23 +73,5 @@ public class Service {
     public void setmPrice(BigDecimal mPrice) {
         this.mPrice = mPrice;
     }
-
-    public List<ServiceBooked> getmServicesBookedList() {
-        return mServicesBookedList;
-    }
-
-    public void setmServicesBookedList(List<ServiceBooked> mServicesBookedList) {
-        this.mServicesBookedList = mServicesBookedList;
-    }
-
-    public List<ServiceProvided> getmServicesProvidedList() {
-        return mServicesProvidedList;
-    }
-
-    public void setmServicesProvidedList(List<ServiceProvided> mServicesProvidedList) {
-        this.mServicesProvidedList = mServicesProvidedList;
-    }
-    
-    
     
 }

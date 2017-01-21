@@ -47,7 +47,7 @@ public class NewEmptyJUnitTest extends TestCase {
     }
 
     public void testBasicUsage() {
-        addServiceBooked();
+        addServicesBooked();
     }
     
     private void addEmployees() {
@@ -145,17 +145,48 @@ public class NewEmptyJUnitTest extends TestCase {
         entityManager.close();
     }
     
-    private void addServiceBooked() {
+    private void addServicesBooked() {
         
         entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         
-        Service service1 = new Service("Corte", 60, BigDecimal.TEN);
-        ServiceBooked sb = new ServiceBooked(service1.getmPrice(), service1);
-        entityManager.persist(service1);
+        ServiceBooked sb1 = new ServiceBooked(BigDecimal.ZERO);
+        ServiceBooked sb2 = new ServiceBooked(BigDecimal.TEN);
+        Service service = new Service("Rastrillo", 45, BigDecimal.ONE);
+        
+        entityManager.persist(service);
+        sb1.setmService(service);
+        sb2.setmService(service);
+        entityManager.persist(sb1);
+        entityManager.persist(sb2);
+        
         
         entityManager.getTransaction().commit();
         entityManager.close();
         
+    }
+    
+    private void addServicesProvided() {
+        entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        
+        ServiceProvided sp1 = new ServiceProvided(BigDecimal.ONE);
+        ServiceProvided sp2 = new ServiceProvided(BigDecimal.ONE);
+        ServiceProvided sp3 = new ServiceProvided(BigDecimal.ONE);
+        ServiceProvided sp4 = new ServiceProvided(BigDecimal.ONE);
+        
+        Service service = new Service("corte de pelo", 333, BigDecimal.TEN);
+        entityManager.persist(service);
+        sp1.setmService(service);
+        
+        
+        
+        entityManager.persist(sp1);
+        entityManager.persist(sp2);
+        entityManager.persist(sp3);
+        entityManager.persist(sp4);
+        
+        entityManager.getTransaction().commit();
+        entityManager.close();        
     }
 }
