@@ -5,13 +5,20 @@
  */
 package com.pfariasmunoz.salon.model.entities;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -20,8 +27,10 @@ import javax.persistence.Table;
  * @author pablo
  */
 @Entity
+@Access(AccessType.PROPERTY)
 @Table(name = "employees")
-public class Employee {
+@NamedQuery(name="Employee.findAll", query="SELECT i from Employee i")
+public class Employee implements Externalizable{
 
     @Id
     @GeneratedValue
@@ -110,4 +119,16 @@ public class Employee {
     public void setmId(Long mId) {
         this.mId = mId;
     }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }
