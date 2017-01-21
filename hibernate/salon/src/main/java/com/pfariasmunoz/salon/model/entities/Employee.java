@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -66,7 +67,27 @@ public class Employee implements Externalizable{
         return mId;
     }
     
+    // First Name property
     private StringProperty mFirstName;
+    @Column(name = "first_name", nullable = false)
+    public String getmFirstName() {
+        return (mFirstName != null) ? mFirstName.get() : DEFAULT_FIRST_NAME;
+    }
+    
+    public void setmFirstName(String firstName) {
+        if ((mFirstName != null) || (!Objects.equals(firstName, DEFAULT_FIRST_NAME))) {
+            firstNameProperty().setValue(firstName);
+        }
+    }
+    
+    public StringProperty firstNameProperty() {
+        if (mFirstName == null) {
+            mFirstName = new SimpleStringProperty(this, "mFirstName", DEFAULT_FIRST_NAME);
+        }
+        return mFirstName;
+    }
+    
+    
     private StringProperty mLastName;
     private ListProperty<Schedule> mScheduleList = new ArrayList<>();
     private ListProperty<Appointment> mAppointmentsCreatedList = new ArrayList<>();
@@ -84,10 +105,7 @@ public class Employee implements Externalizable{
     
     
 
-    @Column(name = "first_name", nullable = false)
-    public String getmFirstName() {
-        return mFirstName;
-    }
+  
     
     @Column(name = "last_name", nullable = false)
     public String getmLastName() {
@@ -138,9 +156,7 @@ public class Employee implements Externalizable{
 
     
 
-    public void setmFirstName(String mFirstName) {
-        this.mFirstName = mFirstName;
-    }
+    
 
     
 
