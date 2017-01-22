@@ -1,0 +1,33 @@
+Sat Jan 21 21:14:33 CLT 2017 : Servidor de red Apache Derby: Se ha iniciado 10.11.1.2 - (1629631) y está listo para aceptar las conexiones en el puerto 1527
+----------------------------------------------------------------
+Sat Jan 21 21:14:33 CLT 2017:
+ Iniciando instancia a816c00e-0159-c386-441e-ffffc0e11ff7 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
+en el directorio de base de datos /home/pablo/work/learning/RatManager/ratmanagerdb con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+Cargado desde file:/usr/lib/jvm/jdk1.8.0/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_91-b14
+user.dir=/usr/lib/jvm/jdk1.8.0/db
+os.name=Linux
+os.arch=amd64
+os.version=4.4.0-57-generic
+derby.system.home=/home/pablo/work/learning/RatManager
+Cargador de clases de base de datos iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Jan 21 21:14:42 CLT 2017:
+Cerrando la instancia a816c00e-0159-c386-441e-ffffc0e11ff7 en el directorio de base de datos /home/pablo/work/learning/RatManager/ratmanagerdb con cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+Sat Jan 21 21:14:42 CLT 2017 Thread[DRDAConnThread_3,5,main] (DATABASE = ratmanagerdb), (DRDAID = {2}), Cierre de la base de datos 'ratmanagerdb'.
+----------------------------------------------------------------
+Sat Jan 21 21:15:47 CLT 2017:
+ Iniciando instancia a65c80ac-0159-c386-441e-ffffc0e11ff7 de Derby, versión The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): 
+en el directorio de base de datos /home/pablo/work/learning/RatManager/ratmanagerdb con el cargador de clases sun.misc.Launcher$AppClassLoader@1d44bcfa
+Cargado desde file:/usr/lib/jvm/jdk1.8.0/db/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_91-b14
+user.dir=/usr/lib/jvm/jdk1.8.0/db
+os.name=Linux
+os.arch=amd64
+os.version=4.4.0-57-generic
+derby.system.home=/home/pablo/work/learning/RatManager
+Cargador de clases de base de datos iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Sat Jan 21 22:33:31 CLT 2017: cerrando motor de Derby

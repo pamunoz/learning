@@ -19,6 +19,8 @@ import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
@@ -43,6 +45,8 @@ public class Employee implements Externalizable{
     
     private static final Long DEFAULT_ID = -1L;
     private static final String DEFAULT_FIRST_NAME = "";
+    private static final String DEFAULT_LAST_NAME = "";
+    private static final 
     
     
     // ID property
@@ -87,11 +91,38 @@ public class Employee implements Externalizable{
         return mFirstName;
     }
     
-    
+    // Last Name property    
     private StringProperty mLastName;
-    private ListProperty<Schedule> mScheduleList = new ArrayList<>();
-    private ListProperty<Appointment> mAppointmentsCreatedList = new ArrayList<>();
-    private ListProperty<Appointment> mAppointmentsAssignList = new ArrayList<>();
+    @Column(name = "last_name", nullable = false)
+    public String getmLastName() {
+        return (mLastName != null) ? mLastName.get() : DEFAULT_LAST_NAME;
+    }
+    
+    public void setmLastName(String lastName) {
+        if ((mLastName != null) || (!Objects.equals(lastName, DEFAULT_LAST_NAME))) {
+            lastNameProperty().setValue(lastName);
+        }
+        
+    }
+    
+    public StringProperty lastNameProperty() {
+        if (mLastName == null) {
+            mLastName = new SimpleStringProperty(this, "mLastName", DEFAULT_LAST_NAME);
+        }
+        return mLastName;
+    }
+    
+    
+    private ListProperty<Schedule> mScheduleList;
+    @OneToMany(mappedBy = "mEmployee", cascade = {CascadeType.ALL})
+    public ObservableList<Schedule> getmScheduleList() {
+        return (mScheduleList != null) ? mScheduleList.get() : DEFAULT_SCHEDULE_LIST;
+    }
+    
+    
+    
+    private ListProperty<Appointment> mAppointmentsCreatedList;
+    private ListProperty<Appointment> mAppointmentsAssignList;
 
     public Employee() {
         this.mFirstName = "";
@@ -107,15 +138,9 @@ public class Employee implements Externalizable{
 
   
     
-    @Column(name = "last_name", nullable = false)
-    public String getmLastName() {
-        return mLastName;
-    }
     
-    @OneToMany(mappedBy = "mEmployee", cascade = {CascadeType.ALL})
-    public ListProperty<Schedule> getmScheduleList() {
-        return mScheduleList;
-    }
+    
+    
     
     @OneToMany(mappedBy = "mEmployeeCreated", cascade = {CascadeType.ALL})
     public List<Appointment> getmAppointmentsCreatedList() {
@@ -160,9 +185,7 @@ public class Employee implements Externalizable{
 
     
 
-    public void setmLastName(String mLastName) {
-        this.mLastName = mLastName;
-    }
+    
 
     
 
