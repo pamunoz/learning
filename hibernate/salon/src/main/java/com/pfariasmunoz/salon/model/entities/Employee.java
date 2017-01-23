@@ -5,9 +5,10 @@
  */
 package com.pfariasmunoz.salon.model.entities;
 
-import java.io.Serializable;
+import javafx.beans.property.LongProperty;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.beans.property.StringProperty;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,50 +26,44 @@ import javax.persistence.Table;
 public class Employee {
 
     
-    private Long mId;
-    private String mFirstName;
-    private String mLastName;
+    private LongProperty mId;
+    private StringProperty mFirstName;
+    private StringProperty mLastName;
     private List<Schedule> mScheduleList = new ArrayList<>();
     private List<Appointment> mAppointmentsCreatedList = new ArrayList<>();
     private List<Appointment> mAppointmentsAssignList = new ArrayList<>();
 
     public Employee() {
-        this.mFirstName = "";
-        this.mLastName = "";
     }
 
-    public Employee(String mFirstName, String mLastName) {
-        this.mFirstName = mFirstName;
-        this.mLastName = mLastName;
-    }
     
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
     public Long getmId() {
-        return mId;
+        return mId.get();
     }
 
-    public void setmId(Long mId) {
-        this.mId = mId;
+    public void setmId(Long id) {
+        this.mId.set(id);
     }
     
     @Column(name = "first_name", nullable = false)
     public String getmFirstName() {
-        return mFirstName;
+        return mFirstName.get();
     }
 
-    public void setmFirstName(String mFirstName) {
-        this.mFirstName = mFirstName;
+    public void setmFirstName(String firstName) {
+        this.mFirstName.set(firstName);
     }
     
     @Column(name = "last_name", nullable = false)
     public String getmLastName() {
-        return mLastName;
+        return mLastName.get();
     }
 
-    public void setmLastName(String mLastName) {
-        this.mLastName = mLastName;
+    public void setmLastName(String lastName) {
+        this.mLastName.set(lastName);
     }
     
     @OneToMany(mappedBy = "mEmployee", cascade = {CascadeType.ALL})
