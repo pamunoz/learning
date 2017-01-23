@@ -5,6 +5,7 @@
  */
 package com.pfariasmunoz.salon.model.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -23,24 +24,12 @@ import javax.persistence.Table;
 @Table(name = "employees")
 public class Employee {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "id", nullable = false)
+    
     private Long mId;
-
-    @Column(name = "first_name", nullable = false)
     private String mFirstName;
-
-    @Column(name = "last_name", nullable = false)
     private String mLastName;
-
-    @OneToMany(mappedBy = "mEmployee", cascade = {CascadeType.ALL})
     private List<Schedule> mScheduleList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "mEmployeeCreated", cascade = {CascadeType.ALL})
     private List<Appointment> mAppointmentsCreatedList = new ArrayList<>();
-
-    @OneToMany(mappedBy = "mAssingEmployee", cascade = {CascadeType.ALL})
     private List<Appointment> mAppointmentsAssignList = new ArrayList<>();
 
     public Employee() {
@@ -52,7 +41,46 @@ public class Employee {
         this.mFirstName = mFirstName;
         this.mLastName = mLastName;
     }
+    
+    @Id
+    @GeneratedValue
+    @Column(name = "id", nullable = false)
+    public Long getmId() {
+        return mId;
+    }
 
+    public void setmId(Long mId) {
+        this.mId = mId;
+    }
+    
+    @Column(name = "first_name", nullable = false)
+    public String getmFirstName() {
+        return mFirstName;
+    }
+
+    public void setmFirstName(String mFirstName) {
+        this.mFirstName = mFirstName;
+    }
+    
+    @Column(name = "last_name", nullable = false)
+    public String getmLastName() {
+        return mLastName;
+    }
+
+    public void setmLastName(String mLastName) {
+        this.mLastName = mLastName;
+    }
+    
+    @OneToMany(mappedBy = "mEmployee", cascade = {CascadeType.ALL})
+    public List<Schedule> getmScheduleList() {
+        return mScheduleList;
+    }
+    
+    public void setmScheduleList(List<Schedule> mScheduleList) {
+        this.mScheduleList = mScheduleList;
+    }
+    
+    @OneToMany(mappedBy = "mEmployeeCreated", cascade = {CascadeType.ALL})
     public List<Appointment> getmAppointmentsCreatedList() {
         return mAppointmentsCreatedList;
     }
@@ -61,6 +89,7 @@ public class Employee {
         this.mAppointmentsCreatedList = mAppointmentsCreatedList;
     }
 
+    @OneToMany(mappedBy = "mAssingEmployee", cascade = {CascadeType.ALL})
     public List<Appointment> getmAppointmentsAssignList() {
         return mAppointmentsAssignList;
     }
@@ -69,6 +98,7 @@ public class Employee {
         this.mAppointmentsAssignList = mAppointmentsAssignList;
     }
 
+    
     public void addAppointment(Appointment appointment) {
         mAppointmentsCreatedList.add(appointment);
         appointment.setmEmployeeCreated(this);
@@ -78,36 +108,9 @@ public class Employee {
         mScheduleList.add(schedule);
         schedule.setmEmployee(this);
     }
+    
+    
+    
 
-    public String getmFirstName() {
-        return mFirstName;
-    }
-
-    public void setmFirstName(String mFirstName) {
-        this.mFirstName = mFirstName;
-    }
-
-    public String getmLastName() {
-        return mLastName;
-    }
-
-    public void setmLastName(String mLastName) {
-        this.mLastName = mLastName;
-    }
-
-    public List<Schedule> getmScheduleList() {
-        return mScheduleList;
-    }
-
-    public void setmScheduleList(List<Schedule> mScheduleList) {
-        this.mScheduleList = mScheduleList;
-    }
-
-    public Long getmId() {
-        return mId;
-    }
-
-    public void setmId(Long mId) {
-        this.mId = mId;
-    }
+    
 }
