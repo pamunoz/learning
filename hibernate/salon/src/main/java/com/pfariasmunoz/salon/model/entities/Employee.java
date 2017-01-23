@@ -43,30 +43,31 @@ import javax.persistence.Table;
 @NamedQuery(name="Employee.findAll", query="SELECT e from Employee e")
 public class Employee implements Externalizable{
     
-    private static final Long DEFAULT_ID = -1L;
     private static final String DEFAULT_FIRST_NAME = "";
     private static final String DEFAULT_LAST_NAME = "";
-    private static final 
     
     
     // ID property
-    private ObjectProperty<Long> mId; 
+    private ObjectProperty<Long> mId;
+    private Long _mId;
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public Long getmId() {
-        return (mId != null) ? mId.get() : DEFAULT_ID;
+        return (mId != null) ? mId.get() :_mId;
     }
     
     public void setmId(Long id) {
-        if ((mId != null) || (!Objects.equals(id, DEFAULT_ID))) {
-            idProperty().setValue(id);
-        }
+        if (mId != null) {
+            mId.set(id);
+        } else {
+            _mId = id;
+        }  
     }
     
     public ObjectProperty<Long> idProperty() {
         if (mId == null) {
-            mId = new SimpleObjectProperty<>(this, "mId", DEFAULT_ID);
+            mId = new SimpleObjectProperty<>(this, "mId", _mId);
         }
         return mId;
     }

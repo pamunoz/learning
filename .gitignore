@@ -41,3 +41,7 @@ hs_err_pid*
 /project/documentation/target/
 /HibernateHelloWorld/target/
 >>>>>>> my_hibernate_test_collection/master
+/hibernate/salon/nbproject/
+/hibernate/salon/target/
+/RatManager/nbproject/private/
+/LoginControl/nbproject/private/
