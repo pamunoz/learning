@@ -22,7 +22,7 @@
                <children>
                   <ImageView fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../Imágenes/mi_avatar.jpg" />
+                        <Image url="@res/images/mi_avatar.jpg" />
                      </image>
                      <HBox.margin>
                         <Insets />
@@ -40,7 +40,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" text="New Note" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="newNoteBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleNewNote" text="New Note" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -83,7 +83,7 @@
       <Separator prefWidth="200.0" />
       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="426.0">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" text="Delete" textAlignment="CENTER">
+            <Button fx:id="deleteNoteBtn" alignment="CENTER" mnemonicParsing="false" onAction="#handleDeleteNote" text="Delete" textAlignment="CENTER">
                <padding>
                   <Insets bottom="8.0" left="16.0" right="16.0" top="8.0" />
                </padding>
@@ -91,7 +91,7 @@
                   <Insets right="64.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Edit">
+            <Button fx:id="editNoteBtn" mnemonicParsing="false" onAction="#handleEditNote" text="Edit">
                <padding>
                   <Insets bottom="8.0" left="16.0" right="16.0" top="8.0" />
                </padding>

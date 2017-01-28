@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox prefHeight="580.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pfariasmunoz.jfx8.ch3.AddEditUIController">
    <children>
       <HBox prefHeight="89.0" prefWidth="414.0">
@@ -24,7 +23,7 @@
                <children>
                   <ImageView fitHeight="71.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../Imágenes/mi_avatar.jpg" />
+                        <Image url="@res/images/mi_avatar.jpg" />
                      </image>
                      <HBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -45,7 +44,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="186.0">
                <children>
-                  <Button minWidth="-Infinity" mnemonicParsing="false" prefHeight="48.0" prefWidth="81.0" text="Notes List" textAlignment="CENTER" wrapText="true">
+                  <Button fx:id="newNotesBtn" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleNewNotes" prefHeight="48.0" prefWidth="81.0" text="Notes List" textAlignment="CENTER" wrapText="true">
                      <HBox.margin>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </HBox.margin>
@@ -93,7 +92,7 @@
       <Separator prefWidth="200.0" />
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" text="Cancel">
+            <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#handleCancel" text="Cancel">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin>
@@ -101,7 +100,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" text="Clear">
+            <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#handleClear" text="Clear">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin>
@@ -109,7 +108,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" text="Save">
+            <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#handleSave" text="Save">
                <HBox.margin>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </HBox.margin>
