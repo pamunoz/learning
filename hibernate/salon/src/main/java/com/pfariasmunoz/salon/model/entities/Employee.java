@@ -6,10 +6,14 @@
 package com.pfariasmunoz.salon.model.entities;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> e0d1ae93358874f9d3040807a5a91e25c4daa865
 import javafx.beans.property.LongProperty;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.StringProperty;
+<<<<<<< HEAD
 =======
 import javafx.beans.property.ObjectProperty;
 
@@ -30,6 +34,8 @@ import javafx.collections.ObservableList;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 >>>>>>> withJavaFx
+=======
+>>>>>>> e0d1ae93358874f9d3040807a5a91e25c4daa865
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -94,6 +100,7 @@ public class Employee {
     @OneToMany(mappedBy = "mEmployee", cascade = {CascadeType.ALL})
     public List<Schedule> getmScheduleList() {
         return mScheduleList;
+<<<<<<< HEAD
 =======
 @NamedQuery(name="Employee.findAll", query="SELECT e from Employee e")
 public class Employee implements Externalizable{
@@ -184,12 +191,15 @@ public class Employee implements Externalizable{
         this.mFirstName = "";
         this.mLastName = "";
 >>>>>>> withJavaFx
+=======
+>>>>>>> e0d1ae93358874f9d3040807a5a91e25c4daa865
     }
     
     public void setmScheduleList(List<Schedule> mScheduleList) {
         this.mScheduleList = mScheduleList;
     }
     
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     
@@ -201,6 +211,8 @@ public class Employee implements Externalizable{
     
     
 >>>>>>> withJavaFx
+=======
+>>>>>>> e0d1ae93358874f9d3040807a5a91e25c4daa865
     @OneToMany(mappedBy = "mEmployeeCreated", cascade = {CascadeType.ALL})
     public List<Appointment> getmAppointmentsCreatedList() {
         return mAppointmentsCreatedList;
@@ -211,9 +223,12 @@ public class Employee implements Externalizable{
         this.mAppointmentsCreatedList = mAppointmentsCreatedList;
     }
 
+<<<<<<< HEAD
 =======
     
 >>>>>>> withJavaFx
+=======
+>>>>>>> e0d1ae93358874f9d3040807a5a91e25c4daa865
     @OneToMany(mappedBy = "mAssingEmployee", cascade = {CascadeType.ALL})
     public List<Appointment> getmAppointmentsAssignList() {
         return mAppointmentsAssignList;
@@ -239,6 +254,7 @@ public class Employee implements Externalizable{
         schedule.setmEmployee(this);
     }
     
+<<<<<<< HEAD
 <<<<<<< HEAD
     
     
@@ -280,5 +296,10 @@ public class Employee implements Externalizable{
     }
     
 >>>>>>> withJavaFx
+=======
+    
+    
+
+>>>>>>> e0d1ae93358874f9d3040807a5a91e25c4daa865
     
 }
