@@ -41,5 +41,12 @@ hs_err_pid*
 /project/documentation/target/
 /HibernateHelloWorld/target/
 >>>>>>> my_hibernate_test_collection/master
+<<<<<<< HEAD
 /learning_java/RxJavaDemo/target/
 /learning_java/testProject/nbproject/private/
+=======
+/hibernate/salon/nbproject/
+/hibernate/salon/target/
+/RatManager/nbproject/private/
+/LoginControl/nbproject/private/
+>>>>>>> withJavaFx

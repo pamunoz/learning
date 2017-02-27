@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane prefHeight="149.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logincontrol.LoginUIController">
+    <children>
+        <GridPane prefHeight="149.0" prefWidth="342.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <TextField fx:id="loginUserNameTextField" onAction="#doLoginUserName" promptText="Enter your username" GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets left="8.0" right="8.0" />
+                    </GridPane.margin>
+                </TextField>
+                <PasswordField fx:id="loginPasswordField" onAction="#doLoginPassword" promptText="Enter your password" GridPane.rowIndex="2">
+                    <GridPane.margin>
+                        <Insets left="8.0" right="8.0" />
+                    </GridPane.margin>
+                </PasswordField>
+                <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                    <children>
+                        <CheckBox fx:id="rememberChbox" mnemonicParsing="false" onAction="#doRemember">
+                            <HBox.margin>
+                                <Insets bottom="8.0" left="8.0" top="8.0" />
+                            </HBox.margin>
+                        </CheckBox>
+                        <Label text="Remember Me!">
+                            <HBox.margin>
+                                <Insets right="8.0" />
+                            </HBox.margin>
+                            <padding>
+                                <Insets bottom="8.0" left="8.0" right="70.0" top="8.0" />
+                            </padding>
+                        </Label>
+                        <Button fx:id="resetBtn" mnemonicParsing="false" onAction="#doReset" text="Reset" />
+                        <Button fx:id="loginBtn" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#doLogin" text="Login">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+                <HBox prefHeight="100.0" prefWidth="200.0">
+                    <children>
+                        <ImageView fitHeight="37.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../res/images/Popcorn_Time_logo.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets left="8.0" top="8.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Login Credentials">
+                            <font>
+                                <Font name="Droid Sans Bold" size="19.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="8.0" top="8.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </GridPane>
+    </children>
+</Pane>
