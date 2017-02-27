@@ -56,13 +56,8 @@ public class NewEmptyJUnitTest extends TestCase {
         LocalDateTime from1 = LocalDateTime.of(2000, Month.MARCH, 15, 11, 0);
         LocalDateTime to1 = LocalDateTime.of(2000, Month.MARCH, 15, 11, 1);
         Schedule schedule = new Schedule(from1, to1);
-        Employee pablo = new Employee("Pablo", "Farias");
-        Employee cristopher = new Employee("Cristopher", "Rojas");
-        Employee carolina = new Employee("Carolina", "Farias");
-        pablo.addSchedule(schedule);
-        entityManager.persist(cristopher);
-        entityManager.persist(carolina);
-        entityManager.persist(pablo);
+        
+      
         entityManager.getTransaction().commit();
         entityManager.close();
 
@@ -111,23 +106,19 @@ public class NewEmptyJUnitTest extends TestCase {
     
     private void addAppointments() {
         
-        Employee employee1 = new Employee("Pablo", "Farias");
-        Employee employee2 = new Employee("Carolina", "Farias");
-        Employee employee3 = new Employee("Cristopher", "Rojas");
+       
         
         LocalDate localDate1 = LocalDate.of(2000, Month.MARCH, 1);
         LocalDate localDate2 = LocalDate.of(2000, Month.MARCH, 2);
         LocalDate localDate3 = LocalDate.of(2000, Month.MARCH, 3);
         
         
-        Appointment appointment4 = new Appointment(localDate3, employee3, "Roberto", "roberto@gmail.com", LocalDateTime.now(), LocalDateTime.of(2017, Month.MARCH, 4, 10, 34), new BigDecimal(20000), false);
         Appointment appointment5 = new Appointment();
         
         entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
         
 
-        entityManager.persist(appointment4);
         entityManager.persist(appointment5);
          
         entityManager.getTransaction().commit();
