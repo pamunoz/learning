@@ -9,6 +9,11 @@ import javafx.scene.control.Label;
  * name
  */
 public class HelloFx extends Application {
+
+    public static void main(String[] args) {
+        
+    }
+
     @Override
     public void start(Stage stage) {
         stage.setTitle("Hello JavaFx");
